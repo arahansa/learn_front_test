@@ -13,4 +13,5 @@
      it("sum 은 값을 더한다. ", function() {
          expect(calculator.sum(1,2)).toEqual(3);
      });
+
    });
