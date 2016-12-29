@@ -23,7 +23,7 @@ module.exports = function (config) {
         // reporters: ['progress', 'coverage'],
         preprocessors: {'js/**/*.js': ['coverage'], 'js/codecoast/*.js': ['coverage']},  
         // optionally, configure the reporter 
-        coverageReporter: {type: 'html', dir: 'coverage/'}
+        coverageReporter: {type: 'html', dir: '../test/coverage/'}
     });
 };
 
