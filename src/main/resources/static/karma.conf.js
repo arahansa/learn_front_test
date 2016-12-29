@@ -3,11 +3,12 @@
  */
 module.exports = function (config) {
     config.set({
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine-ajax','jasmine'],
         reporters: ['kjhtml', 'progress', 'coverage'], //kjhtml
         browsers: ['Chrome'], // PhantomJS, Chrome 
         files: [
             {pattern:'node_modules/jquery/dist/jquery.min.js'},
+            {pattern:'node_modules/jasmine-jquery/lib/jasmine-jquery.js'},
             {pattern:'../test/karma.debug.js'},
             {pattern:'js/codecoast/**.js'},
             {pattern:'../test/spec/*_spec.js'}
