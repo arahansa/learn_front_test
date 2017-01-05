@@ -32,4 +32,3 @@ CodeCoast.ColorChanger = function(){
     return self;
 };
 ;(function(){ new CodeCoast.ColorChanger().init(); }());
-
