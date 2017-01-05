@@ -1,8 +1,7 @@
 /**
  * Created by jarvis on 2016. 12. 30..
  */
-
-var CodeCoast = CodeCoast || {};
+var CodeCoast = CodeCoast || {}
 CodeCoast.ColorChanger = function(){
     var self = {
         init : function(){
@@ -30,10 +29,7 @@ CodeCoast.ColorChanger = function(){
             });
         }
     }
-    self.init();
     return self;
 };
-
-
-;(function(){ new CodeCoast.ColorChanger(); }());
+;(function(){ new CodeCoast.ColorChanger().init(); }());
 

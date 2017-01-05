@@ -30,10 +30,13 @@ describe('색깔 변환기 테스트', function(){
         setFixtures('<button id="changeColor">색깔 변경</button>');
         colorChanger = new CodeCoast.ColorChanger();
         spyOn(colorChanger, 'changeColor');
+
         var spyEvent = spyOnEvent('#changeColor', 'click');
         colorChanger.evtBindings();
+
         // When
         $('#changeColor').click();
+
         // Then
         expect(colorChanger.changeColor).toHaveBeenCalled();
         expect('click').toHaveBeenTriggeredOn('#changeColor');

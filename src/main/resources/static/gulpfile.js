@@ -26,3 +26,15 @@ gulp.task('karma', function(done){
 });
 
 gulp.task('default', ['jasmine']);
+
+
+var sourcemaps = require('gulp-sourcemaps');
+var babel = require('gulp-babel');
+
+gulp.task('babel', function() {
+    return gulp.src('js/es2015/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        .pipe(sourcemaps.write('./', {sourceRoot: '../js/es2015'}))
+        .pipe(gulp.dest('out'));;
+});
