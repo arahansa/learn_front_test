@@ -27,6 +27,9 @@ gulp.task('karma', function(done){
 
 gulp.task('default', ['jasmine']);
 
+gulp.task('tt', function(){
+    console.log("하이하이");
+});
 
 var sourcemaps = require('gulp-sourcemaps');
 var babel = require('gulp-babel');

@@ -5,14 +5,16 @@ var CodeCoast = CodeCoast || {}
 
 CodeCoast.AjaxReceiver = function(url){ this.url = url;};
 CodeCoast.AjaxReceiver.prototype = {
-    getColor : function(colorChanger, callback){
+    getColor : function(callback){
         var $this = this;
         $.ajax({
             url:$this.url,
             method:"GET",
             success:function(result){
+                console.log("result : ", result);
+                console.log("callback: ", callback);
                 if(callback && result){
-                    callback(colorChanger, result);
+                    callback(result);
                 }
             }
         });
@@ -27,16 +29,15 @@ CodeCoast.newColorChanger.prototype = {
         this.receiver = receiver;
     },
     receiverColor : function(callback){
-        this.receiver.getColor(this, callback);
+        this.receiver.getColor(callback);
     }
 };
 
 // http://www.nextree.co.kr/p7323/
 // Object.create 는 아마 es5 였지?
-CodeCoast.newColorChanger$ = function(receiver, jq, target){
+CodeCoast.newColorChanger$ = function(receiver, jq){
     CodeCoast.newColorChanger.apply(this, arguments);
     this.jq = jq;
-    this.target = target;
 };
 CodeCoast.newColorChanger$.prototype = CodeCoast.newColorChanger.prototype;
 CodeCoast.newColorChanger$.prototype.on = function(eventType, callback){
@@ -46,5 +47,5 @@ CodeCoast.newColorChanger$.prototype.on = function(eventType, callback){
 };
 
 new CodeCoast.newColorChanger$(
-new CodeCoast.AjaxReceiver("/getRamdomColor"), $("#changeColor"), $("#color-panel")
-).on("click", function(cc, color){cc.target.css("background-color", color);});
+new CodeCoast.AjaxReceiver("/getRamdomColor"), $("#changeColor")
+).on("click", function(color){ $("#color-panel").css("background-color", color);});
