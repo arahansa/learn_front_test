@@ -2,9 +2,12 @@
  * Created by jarvis on 2016. 12. 29..
  */
 var gulp = require('gulp');
+
 var jasmine = require('gulp-jasmine');
 var reporters = require('jasmine-reporters');
 var jasmineBrowser = require('gulp-jasmine-browser');
+
+
 var Server = require('karma').Server;
 
 gulp.task('jasmine', function () {
