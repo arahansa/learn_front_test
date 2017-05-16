@@ -5,7 +5,7 @@ var CodeCoast = CodeCoast || {}
 CodeCoast.ColorChanger = function(){
     var self = {
         init : function(){
-            console.log("init");
+            console.log("init!");
             this.evtBindings();
         },
         evtBindings : function(){
@@ -14,21 +14,26 @@ CodeCoast.ColorChanger = function(){
 
         },
         changeColor : function(callback){
+            console.log("컬러 체인저 클릭");
+
             $.ajax({
                 url:"/getRamdomColor",
                 method:"GET",
                 success: function(result){
                     console.log("result" , result);
                     $("#color-panel").css("background-color", result);
-                    if(callback != undefined) callback();
+                    if(callback != undefined && typeof callback =="function") callback();
                 },
                 error : function(result){
-                    console.log("result" , result);
-                    if(callback != undefined) callback();
+                    console.log("fail result" , result);
+                    console.log("fail result...", result.statusCode());
+                    if(callback != undefined  && typeof callback =="function") callback();
                 }
             });
         }
     }
     return self;
 };
-;(function(){ new CodeCoast.ColorChanger().init(); }());
+;
+
+if (typeof module !== 'undefined' && module.exports != null) { module.exports = CodeCoast }

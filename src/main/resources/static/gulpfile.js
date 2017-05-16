@@ -6,6 +6,9 @@ var gulp = require('gulp');
 var jasmine = require('gulp-jasmine');
 var reporters = require('jasmine-reporters');
 var jasmineBrowser = require('gulp-jasmine-browser');
+var mocha = require('gulp-mocha');
+
+
 
 
 var Server = require('karma').Server;
@@ -22,11 +25,26 @@ gulp.task('jasmine', function () {
 });
 
 
+gulp.task('mochatest', function () {
+    return gulp.src([
+        "./js/lib/*.js",
+        "./js/*.js"/*,
+        "./js/fibonacci.js",
+        "../test/fibonacci.js"*/], {read:false})
+        .pipe(mocha({
+            reporter:'spec',
+            require :'jsdom-global/register'
+        }));
+});
+
+
 gulp.task('karma', function(done){
     return new Server({
         configFile : require('path').resolve('karma.conf.js')
     }, done).start();
 });
+
+
 
 gulp.task('default', ['jasmine']);
 
