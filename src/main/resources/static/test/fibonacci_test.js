@@ -2,7 +2,7 @@
  * Created by jarvis on 2017. 5. 15..
  */
 
-var fibonacci = require('./fibonacci.js')
+var fibonacci = require('../js/fibonacci.js')
 var chai = require('chai');
 
 var should = chai.should();

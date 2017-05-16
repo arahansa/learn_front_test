@@ -14,4 +14,8 @@
          expect(calculator.sum(1,2)).toEqual(3);
      });
 
+     it('테스트입니다', ()=>{
+
+     });
+
    });

@@ -27,12 +27,9 @@ gulp.task('jasmine', function () {
 
 gulp.task('mochatest', function () {
     return gulp.src([
-        "./js/lib/*.js",
-        "./js/*.js"/*,
-        "./js/fibonacci.js",
-        "../test/fibonacci.js"*/], {read:false})
+        "./test/**/*_test.js"], {read:false})
         .pipe(mocha({
-            reporter:'spec',
+            reporter:'mochawesome',
             require :'jsdom-global/register'
         }));
 });
@@ -41,6 +38,12 @@ gulp.task('mochatest', function () {
 gulp.task('karma', function(done){
     return new Server({
         configFile : require('path').resolve('karma.conf.js')
+    }, done).start();
+});
+
+gulp.task('karma-j', function(done){
+    return new Server({
+        configFile : require('path').resolve('karma.conf_jasmine.js')
     }, done).start();
 });
 

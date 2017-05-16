@@ -10,7 +10,7 @@ chai.use(spies);
 var should = chai.should() , expect = chai.expect;
 
 require('jsdom-global')();
-var CodeCoast = require('./codecoast/colorChanger');
+var CodeCoast = require('../js/codecoast/colorChanger');
 var sinon = require('sinon');
 
 
@@ -65,10 +65,8 @@ describe('컬러체인저 메소드 호출 테스트 ', () => {
             data: {},
             dataType: "json",
             success: callbacks[0],
-            error: function(request,status,error){
-                console.log("에러.");
+            error: function(){
                 callbacks[1]();
-                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
             }
         });
 
@@ -102,15 +100,25 @@ describe('컬러체인저 메소드 호출 테스트 ', () => {
     });
 
 
+    it('test1', function(){
+
+    });
+
     it('click 이벤트 발생시 컬러 체인저가 발동하는가?', ()=>{
+        console.log("컬러 체인저.. 네트워크까지 포함한 테스트.");
         // given
+        colorChanger = new CodeCoast.ColorChanger();
         var spy2 = sinon.spy(colorChanger, 'changeColor');
+        var evtBindingspy = sinon.spy(colorChanger, 'evtBindings');
+        server.respondWith("GET", "/getRamdomColor", [200, { "Content-Type": "text/html" } , 'black']);
         colorChanger.init();
 
-        server.respondWith("GET", "/getRamdomColor", [200, { "Content-Type": "text/html" } , 'black']);
+        console.log("스파이 콜드  : ", evtBindingspy.called);
+        expect(evtBindingspy.called).to.be.true;
 
+        console.log("$ : ", $);
         // when
-        $('#changeColor').trigger('click');
+        $('#changeColor').click();
 
         // then
         expect(spy2.called).to.be.true;
